@@ -1,10 +1,12 @@
 require("dotenv").config();
 const express = require("express");
+var cors = require("cors");
 const mongoose = require("mongoose");
 const cron = require("node-cron");
 const handler = require("./cronHandler");
 
 const app = express();
+app.use(cors());
 
 const mongoString = process.env.MONGO_URL;
 mongoose.connect(mongoString);
