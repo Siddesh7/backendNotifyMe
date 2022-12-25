@@ -9,7 +9,7 @@ function updateWebhook(contract_address, token_id) {
   const url = "https://dashboard.alchemy.com/api/update-webhook-nft-filters";
 
   const payload = {
-    webhook_id: "wh_vi6djfxgancsnf3o",
+    webhook_id: "wh_q4bidp4b68d5fdam",
     nft_filters_to_add: [
       {
         contract_address: contract_address,
@@ -36,9 +36,9 @@ function addAddressToBeTracked(address, chain) {
     "content-type": "application/json",
   };
   if (chain == "Ethereum") {
-    webhook_id = "wh_w8jbaeae6740y7i4";
+    webhook_id = "wh_5ymhj4k1506mnsmg";
   } else if (chain == "Polygon") {
-    webhook_id = "wh_6ohp66co2hm38zxg";
+    webhook_id = "wh_631gs7rlm83ozt9x";
   } else {
     webhook_id = "wh_9gtk7mt8rx5ziih9";
   }

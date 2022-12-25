@@ -114,7 +114,7 @@ router.get("/address", async (req, res) => {
 router.post("/webhook", async (req, res) => {
   const title = `The NFT (${req.body.event.activity[0].toAddress}) was transferred !!`;
   const tokenID = req.body.event.activity[0].erc721TokenId;
-  const body = `The NFT was tranferred, watch the transaction at https://goerli.etherscan.io/tx/${req.body.event.activity[0].hash}`;
+  const body = `The NFT was tranferred, watch the transaction at https://etherscan.io/tx/${req.body.event.activity[0].hash}`;
 
   console.log(tokenID);
   try {
@@ -137,13 +137,15 @@ router.post("/addresswebhook", async (req, res) => {
   const query = {
     $or: [{ addressTracked: fromAddress }, { addressTracked: toAddress }],
   };
+  let body;
   try {
     const alert = await trackAddress.findOne(query);
-    Push.sendNotification(
-      "New Transaction detected",
-      `${alert.addressTracked} made a new transaction, check it at https://goerli.etherscan.io/tx/${hash}`,
-      alert.requester
-    );
+    if (alert.chain == "Ethereum") {
+      body = `${alert.addressTracked} made a new transaction, check it at https://etherscan.io/tx/${hash}`;
+    } else {
+      body = `${alert.addressTracked} made a new transaction, check it at https://polygonscan.com/tx/${hash}`;
+    }
+    Push.sendNotification("New Transaction detected", body, alert.requester);
     console.log(alert.requester);
     res.send(alert);
   } catch (error) {
