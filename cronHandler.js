@@ -6,7 +6,7 @@ async function getPriceAlerts() {
   let currentPrice;
   try {
     axios
-      .get("http://localhost:3000/api/price")
+      .get("https://push-notify-me.onrender.com/api/price")
       .then((response) => {
         const alerts = response.data;
         console.log(alerts);
@@ -23,7 +23,7 @@ async function getPriceAlerts() {
               ) {
                 console.log(entry._id);
                 axios
-                  .delete("http://localhost:3000/api/price", {
+                  .delete("https://push-notify-me.onrender.com/api/price", {
                     data: {
                       id: entry._id,
                     },
@@ -53,7 +53,7 @@ async function getGasAlerts() {
   let currentPrice;
   try {
     axios
-      .get("http://localhost:3000/api/gas")
+      .get("https://push-notify-me.onrender.com/api/gas")
       .then((response) => {
         const alerts = response.data;
         console.log(alerts);
@@ -74,7 +74,7 @@ async function getGasAlerts() {
               if (entry.gasPrice === gasPriceInGwei) {
                 console.log(entry._id);
                 axios
-                  .delete("http://localhost:3000/api/gas", {
+                  .delete("https://push-notify-me.onrender.com/api/gas", {
                     data: {
                       id: entry._id,
                     },
