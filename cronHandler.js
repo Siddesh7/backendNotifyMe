@@ -81,10 +81,9 @@ async function getGasAlerts() {
                   })
                   .then((res) => console.log(res.data))
                   .catch((err) => console.error(err));
-                const response = `THe price of ETH hit ${entry.price} sending notification to ${entry.requester}`;
-                console.log(response);
+
                 const title = `Price Alert`;
-                const body = `GasPrice of $ETH hit your alert price.`;
+                const body = `GasPrice of $ETH hit your alert price of ${gasPriceInGwei} Gwei.`;
                 Push.sendNotification(title, body, entry.requester);
               }
             });
